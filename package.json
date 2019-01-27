@@ -1,0 +1,13 @@
+{
+  "name": "hibp-proxy",
+  "version": "0.1.0-dev.0",
+  "license": "MIT",
+  "scripts": {
+    "deploy": "now -e UA=@hibp-proxy-ua"
+  },
+  "dependencies": {
+    "http-proxy": "1.17.0"
+  },
+  "devDependencies": {},
+  "private": false
+}

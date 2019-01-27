@@ -1,8 +1,15 @@
 {
   "version": 2,
   "name": "hibp-proxy",
+  "env": {
+    "UA": "@hibp-proxy-ua"
+  },
   "routes": [
-    { "src": "/api/(.*)", "dest": "https://haveibeenpwned.com/api/$1" },
-    { "src": "/(.*)", "dest": "https://api.pwnedpasswords.com/$1" }
+    { "src": "/api/.*", "dest": "proxies/haveibeenpwned.js" },
+    { "src": "/.*", "dest": "proxies/pwnedpasswords.js" }
+  ],
+  "builds": [
+    { "src": "proxies/haveibeenpwned.js", "use": "@now/node" },
+    { "src": "proxies/pwnedpasswords.js", "use": "@now/node" }
   ]
 }

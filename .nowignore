@@ -1,3 +1,1 @@
-.gitignore
-.prettierrc
-README.md
+node_modules
