@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "name": "hibp-proxy",
+  "routes": [
+    { "src": "/api/(.*)", "dest": "https://haveibeenpwned.com/api/$1" },
+    { "src": "/(.*)", "dest": "https://api.pwnedpasswords.com/$1" }
+  ]
+}
