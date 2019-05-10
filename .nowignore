@@ -1,1 +1,5 @@
+.vscode
 node_modules
+.prettierignore
+prettier.config.js
+README.md
