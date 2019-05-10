@@ -1,15 +1,14 @@
-const httpProxy = require('http-proxy');
+const fetch = require('node-fetch');
 
-const proxy = httpProxy.createProxyServer({});
-
-proxy.on('proxyReq', function(proxyReq, req, res, options) {
-  proxyReq.setHeader('Accept', 'application/vnd.haveibeenpwned.v2+json');
-  proxyReq.setHeader('User-Agent', process.env.UA);
-});
-
-module.exports = function(req, res) {
-  proxy.web(req, res, {
-    target: `https://haveibeenpwned.com/api/${req.url}`,
-    secure: true,
-  });
+module.exports = async (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=600');
+  res.setHeader('Content-Type', 'application/json');
+  res.end(
+    await (await fetch(`https://haveibeenpwned.com${req.url}`, {
+      headers: {
+        Accept: 'application/vnd.haveibeenpwned.v2+json',
+        'User-Agent': process.env.UA,
+      },
+    })).text(),
+  );
 };

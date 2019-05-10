@@ -6,7 +6,7 @@
     "deploy": "now -e UA=@hibp-proxy-ua"
   },
   "dependencies": {
-    "http-proxy": "1.17.0"
+    "node-fetch": "2.5.0"
   },
   "devDependencies": {},
   "private": false

@@ -1,14 +1,11 @@
-const httpProxy = require('http-proxy');
+const fetch = require('node-fetch');
 
-const proxy = httpProxy.createProxyServer({});
-
-proxy.on('proxyReq', function(proxyReq, req, res, options) {
-  proxyReq.setHeader('User-Agent', process.env.UA);
-});
-
-module.exports = function(req, res) {
-  proxy.web(req, res, {
-    target: `https://api.pwnedpasswords.com/${req.url}`,
-    secure: true,
-  });
+module.exports = async (req, res) => {
+  res.end(
+    await (await fetch(`https://api.pwnedpasswords.com${req.url}`, {
+      headers: {
+        'User-Agent': process.env.UA,
+      },
+    })).text(),
+  );
 };
