@@ -5,8 +5,20 @@
     "UA": "@hibp-proxy-ua"
   },
   "routes": [
-    { "src": "/api/.*", "dest": "proxies/haveibeenpwned.js" },
-    { "src": "/.*", "dest": "proxies/pwnedpasswords.js" }
+    {
+      "src": "/api/.*",
+      "dest": "proxies/haveibeenpwned.js",
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "src": "/.*",
+      "dest": "proxies/pwnedpasswords.js",
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
+      }
+    }
   ],
   "builds": [
     { "src": "proxies/haveibeenpwned.js", "use": "@now/node" },
